@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Wallpoet&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>NASA api</title>
+</head>
+<body>
+<header onload="init_site()">
+    <div class="g-container g-col hundred ">
+        <div class="clearfix hundred">
+            <h1 class="logo">NASA</h1>
+        </div>    
+    </div>
+</header>
+<section class="s-select" >
+    <div class="g-container g-col">
+        <div class=" g-100 clearfix">
+            <div class="flex-row-center">
+                <h2> The Curiousity Rover</h2>
+            </div>
+            <div class="flex-row-center">
+                <select name="sol" id="solpick" class="g-50 selector">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                </select>
+                <select name="camera" id="camerapick" class="g-50 selector"  >
+                        <option value="volvo">eolvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                        <option value="volvo">eolvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="volvo">eolvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="volvo">eolvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="volvo">eolvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="volvo">eolvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="volvo">eolvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="volvo">eolvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="volvo">eolvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                        <option value="volvo">eolvo</option>
+                        <option value="saab">Saab</option>
+                </select>
+                <button onclick="nasa_search()" class="nasa-search">Search</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="s-content"> 
+    <div class="g-container">
+        <div class="g-100 clearfix">
+            <div id="image-holder">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="space.js"></script>
+</body>
+</html>
