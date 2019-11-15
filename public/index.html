@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="style.css">
     <title>NASA api</title>
 </head>
-<body>
-<header onload="init_site()">
+<body onload="initSite()">
+<header>
     <div class="g-container g-col hundred ">
         <div class="clearfix hundred">
-            <h1 class="logo">NASA</h1>
+            <a href="./movie.html" class="logo">NASA</a>
         </div>    
     </div>
 </header>
@@ -24,41 +24,12 @@
             </div>
             <div class="flex-row-center">
                 <select name="sol" id="solpick" class="g-50 selector">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option>
+                       
                 </select>
                 <select name="camera" id="camerapick" class="g-50 selector"  >
-                        <option value="volvo">eolvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option>
-                        <option value="volvo">eolvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="volvo">eolvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="volvo">eolvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="volvo">eolvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="volvo">eolvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="volvo">eolvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="volvo">eolvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="volvo">eolvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option>
-                        <option value="volvo">eolvo</option>
-                        <option value="saab">Saab</option>
+                       
                 </select>
-                <button onclick="nasa_search()" class="nasa-search">Search</button>
+              <button onclick="searchPhotos()" class="nasa-search">Search</button> 
             </div>
         </div>
     </div>
@@ -67,7 +38,7 @@
 
 <section class="s-content"> 
     <div class="g-container">
-        <div class="g-100 clearfix">
+        <div class="g-100 flex-row">
             <div id="image-holder">
 
             </div>

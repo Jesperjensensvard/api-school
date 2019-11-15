@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Wallpoet&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="movie.css">
+    <title>movie api</title>
+</head>
+<body>
+<header>
+    <div class="g-container">
+        <div class="g-100 flex-center" >
+            <a href="./index.html" class="logo">Movie look up</a>
+        </div>
+    </div>
+</header>
+
+<section class="s-search">
+    <div class="g-container">
+        <div class="flex-center">
+            <input type="text" class="search-input" id="movieSearch" placeholder="seacrh for movie"> 
+            <button class="search-button" onclick="search()">Search</button>
+        </div>
+    </div>
+</section>
+
+<section class="s-respons">
+    <div class="g-container">
+        <div id="movieHolder" class="movieHolder flex-movie g-100 clearfix">
+        </div>
+    </div>
+</section>
+
+    <script src="movie.js"></script>
+</body>
+</html>

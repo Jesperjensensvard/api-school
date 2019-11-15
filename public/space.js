@@ -1,39 +1,108 @@
 const baseUral = 'https://api.nasa.gov/mars-photos/api/v1/'
-const nasaApiKey = 'zdZn3GS1CfaUIeEi7y9lG3mSxqsfVZ7SvljDkZin'
-const rover = 'Curiousity'
-console.log(true)
+const apiKey = 'zdZn3GS1CfaUIeEi7y9lG3mSxqsfVZ7SvljDkZin'
+const rover = 'curiosity'
+const camera = 'NAVCAM'
 
-async function init_site() {
-    console.log(true)
+var photoArray = []
+
+async function initSite() {
     try{
-        let data = await make_init_url()
-        append_list_of_opitons(data)
-    }
-    catch{
-        console.error()
+        let manifest = await getManifest()
+        let photoArray = filterManifest(manifest, camera)
+        fillList(photoArray)
+    } catch(err){
+        console.error(err)
     }
 }
 
-async function make_Request(url) {
-    let respons = await fetch(url)
-    if(respons != 200) {
-        console.log("errorroro")
-        throw new Error(respons.status + ": " + respons.statusText)
-    }else{
+function getManifest() {
+     let url = new URL(baseUral + "manifests/" + rover)
+     url.search = new URLSearchParams({
+         api_key: apiKey
+     })
+
+     return makeRequest(url)
+}
+
+async function makeRequest(url) {
+    let response = await fetch(url)
+    if(response.status != 200){
+        console.log("error")
+        throw new Error(response.status + ': ' + response.statusText)
+    } else{
         console.log("success")
-        return await respons.json()
+        return await response.json()
     }
 }
 
+function filterManifest(manifest, cameraTofilterby) {
+    let photoArray =  manifest.photo_manifest.photos
+   
+    return photoArray.filter((item) => {
+        let navcamExist = false
+        item.cameras.forEach(camerainput => {
+            if(camerainput == cameraTofilterby){
+                navcamExist = true
+            }
+        });
+        return navcamExist
+    });
+}
 
-function make_init_url() {
-    let url = new URL(baseUral + "manifest/" + rover)
-    url.search = new URLSearchParams({
-        api_key: nasaApiKey
+function fillList(itemsToAdd) {
+    var solList = document.getElementById('solpick')
+    itemsToAdd.forEach(item =>{
+        var sol = document.createElement('option')
+        sol.innerText = item.sol
+        solList.append(sol)
     })
-    return make_Request(url)
-} 
-    
-function append_list_of_opitons(data) {
+}
 
+
+async function searchPhotos() {
+    var ruleOne = document.getElementById('solpick').value
+    if(ruleOne != null && ruleOne != "") {
+        try{
+            let photosList =  await getPhotoList(ruleOne)
+                printMarshPhotos(photosList)
+            
+        }catch (err){
+            console.error(err)
+        }
+    }
+}
+
+function getPhotoList(ruleOne) {
+    let url = new URL(baseUral + 'rovers/'  + rover + '/photos?')
+    url.search = new URLSearchParams({
+        camera: camera,
+        sol: ruleOne,
+        api_key: apiKey
+
+    })
+    return makeRequest(url)
+}
+
+function printMarshPhotos(photosList) {
+    var imageholder = document.getElementById('image-holder');
+    imageholder.innerHTML = '';
+    
+    photosList.photos.forEach(images => {
+        var image = document.createElement('div')
+
+        image.classList.add('space-img')
+
+        image.style.backgroundImage = "url(" + images.img_src +")";
+
+        /*   
+        movieCard.style.backgroundImage = "url("+ movie.Poster +")";
+        title.innerHTML = movie.Title    
+        year.innerHTML = movie.Year
+        type.innerHTML = movie.Type
+        textholder.classList.add('movie-text-holder')
+         */
+        
+
+        imageholder.append(image)
+    });
 }

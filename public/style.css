@@ -94,3 +94,20 @@ h2 {
     font-size: 1em;
     letter-spacing: 2px;
 }
+
+
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.space-img{
+    width: 500px;
+    height: 500px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
