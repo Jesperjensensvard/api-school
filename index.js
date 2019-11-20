@@ -19,7 +19,7 @@ app.get('/movie/:movie', async function(req, res, next) {
     let movieFetch = await fetch(url)
     let json = await movieFetch.json();
     res.json(json)
-})
+
 app.get('/spaceinit', async function(req, res, next){
     const spaceBaseUral = 'https://api.nasa.gov/mars-photos/api/v1/'
     const spaceApiKey = 'zdZn3GS1CfaUIeEi7y9lG3mSxqsfVZ7SvljDkZin'
@@ -61,8 +61,13 @@ app.get('/spaceSearch/:id', async function(req, res, next){
         api_key: spaceApiKey
     })
     let SpaceFetch = await fetch(url)
-    let json = await SpaceFetch.json();
-    res.json(json)
+    if(SpaceFetch.status != 200) {
+        res.status(400).send('Bad Request')
+    }else {
+        let json = await SpaceFetch.json();
+        res.json(json)
+        res.status(200)
+    }
 }) 
 
 

@@ -6,9 +6,7 @@ async function initSite() {
     if(res.status != 200){
         throw new Error(response.status + ': ' + response.statusText)
     }else{
-        console.log(200)
         let data =  await res.json();
-        console.log(data)
         fillList(data)
     }
 }
@@ -30,7 +28,6 @@ async function searchPhotos() {
         if(res.status != 200){
             throw new Error(response.status + ': ' + response.statusText)
         }else{
-            console.log(200)
             let data =  await res.json();
             printMarshPhotos(data)
         }
