@@ -1,44 +1,18 @@
-const baseurl  = 'http://www.omdbapi.com/?'
-const apikey = 'apikey=2602bde5&'
-let movieId = []
-
 async function search() {
     var movieInput = document.getElementById('movieSearch').value
-    if(movieInput != '' && movieInput != null){
-       
-        try{
-            searchTerm = movieInput.replace(' ', '+');
-            let movieResponse  = await getMoviesUrl(searchTerm)
-            console.log(movieResponse)
-                printRespons(movieResponse)
+    if(movieInput != ""){
+        searchTerm = movieInput.replace(' ', '+');
+        url = '/movie/' + searchTerm
+        let res = await fetch(url)
+        if(res.status != 200){
+            throw new Error(response.status + ': ' + response.statusText)
+        }else{
+            console.log(200)
+            let data =  await res.json();
+            printRespons(data)
         }
-        catch {
-            console.log("err")
-        }
-        
     }
 }
-
-
-
-function getMoviesUrl(movieInput){
-    let url = new URL(baseurl + apikey +'s=' + movieInput)
-
-    return makeRequest(url)
-}
-
-async function makeRequest(url) {
-    console.log(url)
-    let response = await fetch(url)
-    if(response.status != 200){
-        throw new Error(response.status + ': ' + response.statusText)
-    }else{
-        console.log("sucsess")
-        return await response.json()
-    }
-} 
-
-
 
 async function printRespons(data) {
   
@@ -83,11 +57,5 @@ async function printRespons(data) {
     });
 }
 
-async function test() {
-    paramer = 'hulk'
-    testurl =  '/movie/' + paramer + ''
-    let respons = await fetch(testurl)
 
-}
-w
-test();
+

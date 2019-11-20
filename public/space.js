@@ -1,51 +1,16 @@
-const baseUral = 'https://api.nasa.gov/mars-photos/api/v1/'
-const apiKey = 'zdZn3GS1CfaUIeEi7y9lG3mSxqsfVZ7SvljDkZin'
-const rover = 'curiosity'
-const camera = 'NAVCAM'
 var photoArray = []
 
 async function initSite() {
-    try{
-        let manifest = await getManifest()
-        let photoArray = filterManifest(manifest, camera)
-        fillList(photoArray)
-    } catch(err){
-        console.error(err)
-    }
-}
-
-function getManifest() {
-     let url = new URL(baseUral + "manifests/" + rover)
-     url.search = new URLSearchParams({
-         api_key: apiKey
-     })
-
-     return makeRequest(url)
-}
-
-async function makeRequest(url) {
-    let response = await fetch(url)
-    if(response.status != 200){
-        console.log("error")
+    url = '/spaceinit'
+    let res = await fetch(url)
+    if(res.status != 200){
         throw new Error(response.status + ': ' + response.statusText)
-    } else{
-        console.log("success")
-        return await response.json()
+    }else{
+        console.log(200)
+        let data =  await res.json();
+        console.log(data)
+        fillList(data)
     }
-}
-
-function filterManifest(manifest, cameraTofilterby) {
-    let photoArray =  manifest.photo_manifest.photos
-   
-    return photoArray.filter((item) => {
-        let navcamExist = false
-        item.cameras.forEach(camerainput => {
-            if(camerainput == cameraTofilterby){
-                navcamExist = true
-            }
-        });
-        return navcamExist
-    });
 }
 
 function fillList(itemsToAdd) {
@@ -57,29 +22,19 @@ function fillList(itemsToAdd) {
     })
 }
 
-
 async function searchPhotos() {
     var ruleOne = document.getElementById('solpick').value
     if(ruleOne != null && ruleOne != "") {
-        try{
-            let photosList =  await getPhotoList(ruleOne)
-                printMarshPhotos(photosList)
-            
-        }catch (err){
-            console.error(err)
+        url = '/spaceSearch/' + ruleOne
+        let res = await fetch(url)
+        if(res.status != 200){
+            throw new Error(response.status + ': ' + response.statusText)
+        }else{
+            console.log(200)
+            let data =  await res.json();
+            printMarshPhotos(data)
         }
     }
-}
-
-function getPhotoList(ruleOne) {
-    let url = new URL(baseUral + 'rovers/'  + rover + '/photos?')
-    url.search = new URLSearchParams({
-        camera: camera,
-        sol: ruleOne,
-        api_key: apiKey
-
-    })
-    return makeRequest(url)
 }
 
 function printMarshPhotos(photosList) {
