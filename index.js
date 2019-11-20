@@ -11,6 +11,15 @@ app.get('/', function(req, res, next) {
 
 app.use(express.static('public'))
 
+
+app.get('/movie/:movie', async function(req, res, next) {
+    const movieApiKey = 'http://www.omdbapi.com/?';
+    const baseMovieUrl = 'apikey=2602bde5&';
+    let url = new URL(movieApiKey + baseMovieUrl +'s=' + req.params.movie)
+    console.log(url)
+})
+
+
 app.post('/', function (req, res) {
     res.send('Got a POST request')
 })

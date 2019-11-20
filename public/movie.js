@@ -82,3 +82,12 @@ async function printRespons(data) {
         movieHolder.append(movieCard)
     });
 }
+
+async function test() {
+    paramer = 'hulk'
+    testurl =  '/movie/' + paramer + ''
+    let respons = await fetch(testurl)
+
+}
+w
+test();
