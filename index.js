@@ -1,6 +1,8 @@
 const express = require('express')
+const fetch = require('node-fetch');
 const app = express()
 const port = 3000
+
 
 
 app.get('/', function(req, res, next) {
@@ -8,7 +10,6 @@ app.get('/', function(req, res, next) {
 })
 
 app.use(express.static('public'))
-
 
 app.post('/', function (req, res) {
     res.send('Got a POST request')

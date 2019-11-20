@@ -1,6 +1,6 @@
 const baseurl  = 'http://www.omdbapi.com/?'
 const apikey = 'apikey=2602bde5&'
-
+let movieId = []
 
 async function search() {
     var movieInput = document.getElementById('movieSearch').value
@@ -41,8 +41,10 @@ async function makeRequest(url) {
 
 
 async function printRespons(data) {
+  
     var movieHolder = document.getElementById('movieHolder');
     movieHolder.innerHTML = '';
+
     data.Search.forEach(function(movie){
         var movieCard = document.createElement('div')
         var title  = document.createElement('h3');
@@ -61,7 +63,18 @@ async function printRespons(data) {
         title.classList.add("movie-title");
         year.classList.add("movie-year");
         type.classList.add("movie-type");
-
+    /*     $(this).click(function() {
+            swal({
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                showClass: {
+                    popup: 'animated fadeInDown faster'
+                  },
+                  hideClass: {
+                    popup: 'animated fadeOutUp faster'
+                  }
+            });
+        }); */
         textholder.append(title)
         textholder.append(year)
         textholder.append(type)

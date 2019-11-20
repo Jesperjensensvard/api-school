@@ -2,7 +2,6 @@ const baseUral = 'https://api.nasa.gov/mars-photos/api/v1/'
 const apiKey = 'zdZn3GS1CfaUIeEi7y9lG3mSxqsfVZ7SvljDkZin'
 const rover = 'curiosity'
 const camera = 'NAVCAM'
-
 var photoArray = []
 
 async function initSite() {
@@ -84,6 +83,7 @@ function getPhotoList(ruleOne) {
 }
 
 function printMarshPhotos(photosList) {
+
     var imageholder = document.getElementById('image-holder');
     imageholder.innerHTML = '';
     
@@ -93,15 +93,6 @@ function printMarshPhotos(photosList) {
         image.classList.add('space-img')
 
         image.style.backgroundImage = "url(" + images.img_src +")";
-
-        /*   
-        movieCard.style.backgroundImage = "url("+ movie.Poster +")";
-        title.innerHTML = movie.Title    
-        year.innerHTML = movie.Year
-        type.innerHTML = movie.Type
-        textholder.classList.add('movie-text-holder')
-         */
-        
 
         imageholder.append(image)
     });

@@ -8,6 +8,10 @@ Omdb api
 to init site use { node index.js } in command line
 
 
+github:
+https://github.com/Jesperjensensvard/api-school
+
+
 
 
 
