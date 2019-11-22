@@ -8,6 +8,7 @@ Omdb api
 to init site use { node index.js } in command line
 
 to switch between Nasa api and movie api klick site title
+(NASA) or (Movie look up)
 
 
 github:
