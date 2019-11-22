@@ -7,7 +7,6 @@ async function search() {
         if(res.status != 200){
             throw new Error(response.status + ': ' + response.statusText)
         }else{
-            console.log(200)
             let data =  await res.json();
             printRespons(data)
         }
@@ -37,18 +36,7 @@ async function printRespons(data) {
         title.classList.add("movie-title");
         year.classList.add("movie-year");
         type.classList.add("movie-type");
-        $(this).click(function() {
-            swal({
-                title: 'Oops...',
-                text: 'Something went wrong!',
-                showClass: {
-                    popup: 'animated fadeInDown faster'
-                },
-                hideClass: {
-                    popup: 'animated fadeOutUp faster'
-                }
-            });
-        });  
+    
         textholder.append(title)
         textholder.append(year)
         textholder.append(type)

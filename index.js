@@ -19,6 +19,7 @@ app.get('/movie/:movie', async function(req, res, next) {
     let movieFetch = await fetch(url)
     let json = await movieFetch.json();
     res.json(json)
+})
 
 app.get('/spaceinit', async function(req, res, next){
     const spaceBaseUral = 'https://api.nasa.gov/mars-photos/api/v1/'
